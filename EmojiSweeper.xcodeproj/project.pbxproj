@@ -14,6 +14,8 @@
 		5C7A72FF243A2B24008579BF /* EmojiSweeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72FD243A2B24008579BF /* EmojiSweeper.xcdatamodeld */; };
 		5C7A7301243A2B29008579BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A7300243A2B29008579BF /* Assets.xcassets */; };
 		5C7A7304243A2B29008579BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A7302243A2B29008579BF /* LaunchScreen.storyboard */; };
+		5C7A7310243A2D3F008579BF /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A730F243A2D3F008579BF /* Square.swift */; };
+		5C7A7312243A2DD2008579BF /* GameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7311243A2DD2008579BF /* GameField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		5C7A7300243A2B29008579BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C7A7303243A2B29008579BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C7A7305243A2B29008579BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C7A730F243A2D3F008579BF /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		5C7A7311243A2DD2008579BF /* GameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		5C7A72F3243A2B24008579BF /* EmojiSweeper */ = {
 			isa = PBXGroup;
 			children = (
+				5C7A730E243A2CC0008579BF /* Models */,
 				5C7A72F4243A2B24008579BF /* AppDelegate.swift */,
 				5C7A72F6243A2B24008579BF /* SceneDelegate.swift */,
 				5C7A72F8243A2B24008579BF /* ViewController.swift */,
@@ -68,6 +73,15 @@
 				5C7A72FD243A2B24008579BF /* EmojiSweeper.xcdatamodeld */,
 			);
 			path = EmojiSweeper;
+			sourceTree = "<group>";
+		};
+		5C7A730E243A2CC0008579BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C7A7311243A2DD2008579BF /* GameField.swift */,
+				5C7A730F243A2D3F008579BF /* Square.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C7A7310243A2D3F008579BF /* Square.swift in Sources */,
 				5C7A72FF243A2B24008579BF /* EmojiSweeper.xcdatamodeld in Sources */,
+				5C7A7312243A2DD2008579BF /* GameField.swift in Sources */,
 				5C7A72F9243A2B24008579BF /* ViewController.swift in Sources */,
 				5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */,
 				5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */,
@@ -291,6 +307,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7RCT4GHCWV;
 				INFOPLIST_FILE = EmojiSweeper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +315,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.krupskyi.EmojiSweeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -309,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7RCT4GHCWV;
 				INFOPLIST_FILE = EmojiSweeper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.krupskyi.EmojiSweeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
