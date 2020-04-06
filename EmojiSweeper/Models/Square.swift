@@ -8,14 +8,7 @@
 
 import Foundation
 
-class Square {
-    
-    var isMine: Bool
-    
-    // MARK: - Initializations
-    
-    init() {
-        
-        self.isMine = false
-    }
+struct Square {
+
+    var isMine = false
 }

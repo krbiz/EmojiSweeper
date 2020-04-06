@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GameField {
+struct GameField {
     
     let rows: Int
     let columns: Int
@@ -17,14 +17,14 @@ class GameField {
     let mineCount: Int
     
     subscript(row: Int, column: Int) -> Square {
-        return grid[row * column + column]
+        return grid[row * columns + column]
     }
     
     // MARK: - Initializations
     
-    init(colums: Int, rows: Int, mineCount: Int) {
-        self.columns = colums
+    init(rows: Int, colums: Int, mineCount: Int) {
         self.rows = rows
+        self.columns = colums
         self.mineCount = mineCount
         
         setupGrid()
@@ -32,14 +32,13 @@ class GameField {
     
     // MARK: - Setup methods
     
-    private func setupGrid() {
-        
+    private mutating func setupGrid() {
         // Create elements of array
-        for _ in 0..<(columns * rows) {
+        for _ in 0..<(rows * columns) {
             grid.append(Square())
         }
         
-        // Add mines to array
+        // Add mines to the game
         var minesLeft = mineCount
         while minesLeft != 0 {
             let index = Int.random(in: 0..<grid.count)
@@ -47,6 +46,57 @@ class GameField {
             grid[index].isMine = true
             minesLeft -= 1
         }
+    }
+    
+    // MARK:  - Public methods
+    
+    // Calculate number of mines in the square
+    func numberOfMines(_ row: Int, _ column: Int) -> Int {
+        var minesCount = 0
+        
+        if isMine(row - 1, column - 1) {
+            minesCount += 1
+        }
+        if isMine(row - 1, column) {
+            minesCount += 1
+        }
+        if isMine(row - 1, column + 1) {
+            minesCount += 1
+        }
+        if isMine(row, column - 1) {
+            minesCount += 1
+        }
+        if isMine(row, column + 1) {
+            minesCount += 1
+        }
+        if isMine(row + 1, column - 1) {
+            minesCount += 1
+        }
+        if isMine(row + 1, column) {
+            minesCount += 1
+        }
+        if isMine(row + 1, column + 1) {
+            minesCount += 1
+        }
+        
+        return minesCount
+    }
+    
+    // Calculate number of mines of squeare index
+    func numberOfMines(index: Int) -> Int {
+        let row = index / columns
+        let column = index % columns
+        return numberOfMines(row, column)
+    }
+    
+    // MARK: - Private methods
+    
+    // Check if a square is mine
+    private func isMine(_ row: Int, _ column: Int) -> Bool {
+        if row < 0 || column < 0 || row >= rows || column >= columns {
+            return false
+        }
+        return self[row, column].isMine
     }
     
 }
