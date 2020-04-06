@@ -9,8 +9,9 @@
 import Foundation
 
 enum Emoji: String {
-    case mine = "💩"
-    case flag = "🤔"
-    case cool = "😎"
+    case mine  = "💩"
+    case flag  = "🤔"
+    case cool  = "😎"
+    case party = "🥳"
     case dizzy = "😵"
 }

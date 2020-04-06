@@ -37,15 +37,20 @@ class GameViewController: UIViewController {
     @IBOutlet weak var minesLeftCountLabel: UILabel!
     @IBOutlet weak var timerInfoLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        
+
         fieldView.setupGame(rows: rows, columns: columns, mineCount: mineCount)
         fieldView.delegate = self
+    }
+    
+    override func viewWillLayoutSubviews() {
+        gradientBG?.frame = self.view.bounds
     }
     
     private func setupUI() {
@@ -56,20 +61,19 @@ class GameViewController: UIViewController {
         gradientBG?.startPoint = CGPoint(x: 0, y: 0)
         gradientBG?.endPoint = CGPoint(x: 0, y: 1)
         setGreyBackgroundGradient()
-        
         self.view.layer.insertSublayer(gradientBG!, at: 0)
+        
+        // Segmented Control
+        segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+        segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
     }
     
-    override func viewWillLayoutSubviews() {
-        gradientBG?.frame = self.view.bounds
-    }
-    
-    
-    @IBAction func restartGame(_ sender: UIBarButtonItem) {
+    func restartGame() {
         navigationItem.title = Emoji.cool.rawValue
         mineCountLeft = mineCount
         secondsInGame = 0
         setGreyBackgroundGradient()
+        timer?.invalidate()
         fieldView.restartGame(rows: rows, columns: columns, mineCount: mineCount)
     }
     
@@ -89,11 +93,50 @@ class GameViewController: UIViewController {
         CATransaction.setDisableActions(true)
         
         gradientBG?.colors = [UIColor.black.cgColor,
-        UIColor.bgRedColor.cgColor,
-        UIColor.black.cgColor]
+                              UIColor.bgRedColor.cgColor,
+                              UIColor.black.cgColor]
         
         CATransaction.commit()
     }
+    
+    func setGreenBackgroundGradient() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        
+        gradientBG?.colors = [UIColor.black.cgColor,
+                              UIColor.bgGreenColor.cgColor,
+                              UIColor.black.cgColor]
+        
+        CATransaction.commit()
+    }
+    
+    // MARK: - IB Actions
+    
+    @IBAction func actionRestartGame(_ sender: UIBarButtonItem) {
+        restartGame()
+    }
+    
+    @IBAction func actionChangeGameLevel(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            rows = 9
+            columns = 9
+            mineCount = 10
+        case 1:
+            rows = 13
+            columns = 12
+            mineCount = 20
+        case 2:
+            rows = 19
+            columns = 14
+            mineCount = 50
+        default:
+            return
+        }
+        
+        restartGame()
+    }
+    
     
 }
 
@@ -107,10 +150,15 @@ extension GameViewController: GameFieldDelegate {
         })
     }
     
-    func finishGame(_ view: GameFieldView) {
+    func finishGame(_ view: GameFieldView, isWinner: Bool) {
         timer?.invalidate()
-        navigationItem.title = Emoji.dizzy.rawValue
-        setRedBackgroundGradient()
+        if isWinner {
+            navigationItem.title = Emoji.party.rawValue
+            setGreenBackgroundGradient()
+        } else {
+            navigationItem.title = Emoji.dizzy.rawValue
+            setRedBackgroundGradient()
+        }
     }
     
     func addFlag(_ view: GameFieldView) {

@@ -10,11 +10,11 @@ import UIKit
 
 class GameFieldView: UIView {
     
-    var delegate: GameFieldDelegate?
-    
     private var gameField: GameField!
     private var squareButtons = [SquareButton]()
     private var gameIsStarted = false
+    
+    weak var delegate: GameFieldDelegate?
     
     // MARK: - Initializations
     
@@ -73,6 +73,17 @@ class GameFieldView: UIView {
     }
     
     // MARK: - Private methods
+    
+    private func checkVictory() -> Bool {
+        var openButtonsCount = 0
+        squareButtons.forEach { button in
+            if button.condition == .open {
+                openButtonsCount += 1
+            }
+        }
+        let gameFieldSize = gameField.rows * gameField.columns
+        return openButtonsCount + gameField.mineCount == gameFieldSize
+    }
     
     // Check if square is empty and should be opened
     private func shouldOpenEmptySquare(_ row: Int, _ column: Int) -> Bool {
@@ -142,7 +153,7 @@ class GameFieldView: UIView {
         isUserInteractionEnabled = false
         
         // Finish Game Delegate method is calling
-        delegate?.finishGame(self)
+        delegate?.finishGame(self, isWinner: false)
     }
     
     // MARK: - Button actions
@@ -166,17 +177,21 @@ class GameFieldView: UIView {
             let row = index / gameField.rows
             let column = index % gameField.columns
             openEmptySquares(row, column)
-            return
+        } else {
+            square.gradientColor = .squareNumber(of: numberOfMines)
+            square.setTitle("\(numberOfMines)", for: .normal)
+            square.condition = .open
         }
-        
-        square.gradientColor = .squareNumber(of: numberOfMines)
-        square.setTitle("\(numberOfMines)", for: .normal)
-        square.condition = .open
         
         // Start Game Delegate method is calling
         if !gameIsStarted {
             gameIsStarted = true
             delegate?.startGame(self)
+        }
+        
+        // Finish Game Delegate method is calling
+        if checkVictory() {
+            delegate?.finishGame(self, isWinner: true)
         }
     }
     
