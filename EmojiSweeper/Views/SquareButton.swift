@@ -66,7 +66,7 @@ class SquareButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.titleLabel?.font = UIFont.systemFont(ofSize: bounds.size.width / 1.2)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: bounds.size.width / 1.5)
         gradient.frame = self.bounds
     }
 

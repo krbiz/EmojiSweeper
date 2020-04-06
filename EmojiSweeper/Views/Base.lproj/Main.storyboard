@@ -16,14 +16,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCw-By-RHC" customClass="GameFieldView" customModule="EmojiSweeper" customModuleProvider="target">
-                                <rect key="frame" x="20" y="224.5" width="374" height="452"/>
+                                <rect key="frame" x="20" y="236.5" width="374" height="556.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="eR4-SM-o3I">
-                                <rect key="frame" x="20" y="128" width="374" height="76.5"/>
+                                <rect key="frame" x="20" y="128" width="374" height="88.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="a2Q-Aj-Aru">
-                                        <rect key="frame" x="0.0" y="0.0" width="79.5" height="76.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="79.5" height="88.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mines left:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEQ-Ws-fjG">
                                                 <rect key="frame" x="0.0" y="0.0" width="79.5" height="20.5"/>
@@ -32,25 +32,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjV-Dd-U3L">
-                                                <rect key="frame" x="0.0" y="28.5" width="44" height="48"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="55" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MlL-Ab-9CQ">
-                                        <rect key="frame" x="225.5" y="0.0" width="148.5" height="76.5"/>
+                                        <rect key="frame" x="265.5" y="0.0" width="108.5" height="88.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xl-aA-o2M">
-                                                <rect key="frame" x="105.5" y="0.0" width="43" height="20.5"/>
+                                                <rect key="frame" x="65.5" y="0.0" width="43" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjx-yr-8iY">
-                                                <rect key="frame" x="0.0" y="28.5" width="148.5" height="48"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjx-yr-8iY">
+                                                <rect key="frame" x="0.0" y="28.5" width="108.5" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -61,8 +61,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xCw-By-RHC" secondAttribute="bottom" constant="20" id="2kM-eI-D6J"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eR4-SM-o3I" secondAttribute="trailing" constant="20" id="3iz-yc-CwJ"/>
-                            <constraint firstItem="xCw-By-RHC" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="AP8-xq-ldZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xCw-By-RHC" secondAttribute="trailing" constant="20" id="SUz-MI-qpV"/>
                             <constraint firstItem="xCw-By-RHC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bsb-0u-7PP"/>
                             <constraint firstItem="eR4-SM-o3I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="lfc-ab-PKk"/>
@@ -73,6 +73,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="😎" largeTitleDisplayMode="always" id="ryk-lO-Wvo">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zR4-Sg-fML">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="restartGame:" destination="BYZ-38-t0r" id="PT6-BQ-DFH"/>
                             </connections>
@@ -80,6 +81,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="fieldView" destination="xCw-By-RHC" id="bJQ-dr-DTg"/>
+                        <outlet property="minesLeftCountLabel" destination="tjV-Dd-U3L" id="9XZ-eH-Dtl"/>
+                        <outlet property="minesLeftInfoLabel" destination="tEQ-Ws-fjG" id="dET-2s-gwa"/>
+                        <outlet property="timerInfoLabel" destination="1Xl-aA-o2M" id="4AR-Fe-xOB"/>
+                        <outlet property="timerLabel" destination="vjx-yr-8iY" id="sBi-1x-3zU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

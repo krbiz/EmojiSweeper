@@ -10,13 +10,11 @@ import UIKit
 
 class GameFieldView: UIView {
     
-    enum Emoji: String {
-        case mine = "💩"
-        case flag = "🤔"
-    }
+    var delegate: GameFieldDelegate?
     
     private var gameField: GameField!
     private var squareButtons = [SquareButton]()
+    private var gameIsStarted = false
     
     // MARK: - Initializations
     
@@ -30,27 +28,27 @@ class GameFieldView: UIView {
     
     // MARK: - Public methods
     
-    func setupGame(rows: Int, colums: Int, mineCount: Int) {
+    func setupGame(rows: Int, columns: Int, mineCount: Int) {
         
-        gameField = GameField(rows: rows, colums: colums, mineCount: mineCount)
+        gameField = GameField(rows: rows, colums: columns, mineCount: mineCount)
         
         let width = self.bounds.width
         let height = self.bounds.height
         
-        let squareWidth = min(width / CGFloat(colums), height / CGFloat(rows))
+        let squareWidth = min(width / CGFloat(columns), height / CGFloat(rows))
         
-        let leftInset = (width - squareWidth * CGFloat(colums)) / 2
+        let leftInset = (width - squareWidth * CGFloat(columns)) / 2
         let topInset = (height - squareWidth * CGFloat(rows)) / 2
         
         // Add square buttons
         for i in 0..<rows {
-            for j in 0..<colums {
+            for j in 0..<columns {
                 let squareButton = SquareButton()
                 
                 let x = squareWidth * CGFloat(j) + leftInset
                 let y = squareWidth * CGFloat(i) + topInset
                 squareButton.frame = CGRect(x: x, y: y, width: squareWidth, height: squareWidth)
-                squareButton.tag = i * colums + j
+                squareButton.tag = i * columns + j
                 squareButton.addTarget(self, action: #selector(tapButton(_:)), for: .touchUpInside)
                 let longTapGesture = UILongPressGestureRecognizer(target: self,
                                                                   action: #selector(longTapButton(_:)))
@@ -64,13 +62,14 @@ class GameFieldView: UIView {
         
     }
     
-    func restartGame(rows: Int, colums: Int, mineCount: Int) {
+    func restartGame(rows: Int, columns: Int, mineCount: Int) {
         squareButtons.forEach { square in
             square.removeFromSuperview()
         }
         squareButtons.removeAll()
         isUserInteractionEnabled = true
-        setupGame(rows: rows, colums: colums, mineCount: mineCount)
+        gameIsStarted = false
+        setupGame(rows: rows, columns: columns, mineCount: mineCount)
     }
     
     // MARK: - Private methods
@@ -83,7 +82,7 @@ class GameFieldView: UIView {
             row >= gameField.rows || column >= gameField.columns
         
         return !indexIsOutOfRange &&
-               squareButtons[index].condition != .open &&
+               squareButtons[index].condition == .close &&
                !gameField[row, column].isMine
     }
     
@@ -99,7 +98,7 @@ class GameFieldView: UIView {
             return
         }
         
-        squareButtons[index].layer.borderColor = UIColor.darkGray.cgColor
+        squareButtons[index].alpha = 0.5
         
         if shouldOpenEmptySquare(row - 1, column - 1) {
             openEmptySquares(row - 1, column - 1)
@@ -141,12 +140,19 @@ class GameFieldView: UIView {
         }
         
         isUserInteractionEnabled = false
+        
+        // Finish Game Delegate method is calling
+        delegate?.finishGame(self)
     }
     
     // MARK: - Button actions
     
     @objc private func tapButton(_ sender: SquareButton) {
         let square = sender
+        
+        // User can't open square accidentally if flag exists
+        if square.condition == .flag { return }
+        
         square.isEnabled = false
         let index = square.tag
         if gameField.grid[index].isMine {
@@ -166,12 +172,27 @@ class GameFieldView: UIView {
         square.gradientColor = .squareNumber(of: numberOfMines)
         square.setTitle("\(numberOfMines)", for: .normal)
         square.condition = .open
+        
+        // Start Game Delegate method is calling
+        if !gameIsStarted {
+            gameIsStarted = true
+            delegate?.startGame(self)
+        }
     }
     
     @objc private func longTapButton(_ sender: UILongPressGestureRecognizer) {
-        guard let square = sender.view as? SquareButton else { return }
-        square.setTitle(Emoji.flag.rawValue, for: .normal)
-        square.condition = .flag
+        if sender.state == .began && gameIsStarted {
+            guard let square = sender.view as? SquareButton else { return }
+            if square.condition == .flag {
+                square.setTitle("", for: .normal)
+                square.condition = .close
+                delegate?.removeFlag?(self)
+            } else {
+                square.setTitle(Emoji.flag.rawValue, for: .normal)
+                square.condition = .flag
+                delegate?.addFlag?(self)
+            }
+        }
     }
     
 }

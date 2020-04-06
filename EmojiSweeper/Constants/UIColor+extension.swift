@@ -22,8 +22,8 @@ extension UIColor {
     static var mines8Color: UIColor { return #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1) }
     
     // Color of background view
-    static var bgColor:    UIColor { return #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1) }
-    static var bgRedColor: UIColor { return #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1) }
+    static var bgBaseColor: UIColor { return #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1) }
+    static var bgRedColor:  UIColor { return #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1) }
     
     // Get background color of square depends of mines count
     static func squareNumber(of mines: Int) -> UIColor {
