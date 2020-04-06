@@ -9,20 +9,24 @@
 /* Begin PBXBuildFile section */
 		5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F4243A2B24008579BF /* AppDelegate.swift */; };
 		5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F6243A2B24008579BF /* SceneDelegate.swift */; };
-		5C7A72F9243A2B24008579BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F8243A2B24008579BF /* ViewController.swift */; };
+		5C7A72F9243A2B24008579BF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F8243A2B24008579BF /* GameViewController.swift */; };
 		5C7A72FC243A2B24008579BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A72FA243A2B24008579BF /* Main.storyboard */; };
 		5C7A72FF243A2B24008579BF /* EmojiSweeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72FD243A2B24008579BF /* EmojiSweeper.xcdatamodeld */; };
 		5C7A7301243A2B29008579BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A7300243A2B29008579BF /* Assets.xcassets */; };
 		5C7A7304243A2B29008579BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A7302243A2B29008579BF /* LaunchScreen.storyboard */; };
 		5C7A7310243A2D3F008579BF /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A730F243A2D3F008579BF /* Square.swift */; };
 		5C7A7312243A2DD2008579BF /* GameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7311243A2DD2008579BF /* GameField.swift */; };
+		5C7A7316243A3E78008579BF /* SquareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7315243A3E78008579BF /* SquareButton.swift */; };
+		5C7A7319243A43A3008579BF /* GameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7318243A43A3008579BF /* GameFieldView.swift */; };
+		5C7A731B243AA948008579BF /* UIColor+extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A731A243AA948008579BF /* UIColor+extention.swift */; };
+		5C7A731D243BB167008579BF /* GameFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A731C243BB167008579BF /* GameFieldProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5C7A72F1243A2B24008579BF /* EmojiSweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiSweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C7A72F4243A2B24008579BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C7A72F6243A2B24008579BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5C7A72F8243A2B24008579BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5C7A72F8243A2B24008579BF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5C7A72FB243A2B24008579BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5C7A72FE243A2B24008579BF /* EmojiSweeper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmojiSweeper.xcdatamodel; sourceTree = "<group>"; };
 		5C7A7300243A2B29008579BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -30,6 +34,10 @@
 		5C7A7305243A2B29008579BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C7A730F243A2D3F008579BF /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		5C7A7311243A2DD2008579BF /* GameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameField.swift; sourceTree = "<group>"; };
+		5C7A7315243A3E78008579BF /* SquareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareButton.swift; sourceTree = "<group>"; };
+		5C7A7318243A43A3008579BF /* GameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldView.swift; sourceTree = "<group>"; };
+		5C7A731A243AA948008579BF /* UIColor+extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extention.swift"; sourceTree = "<group>"; };
+		5C7A731C243BB167008579BF /* GameFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +71,12 @@
 			isa = PBXGroup;
 			children = (
 				5C7A730E243A2CC0008579BF /* Models */,
+				5C7A7317243A3E85008579BF /* Views */,
 				5C7A72F4243A2B24008579BF /* AppDelegate.swift */,
 				5C7A72F6243A2B24008579BF /* SceneDelegate.swift */,
-				5C7A72F8243A2B24008579BF /* ViewController.swift */,
+				5C7A731C243BB167008579BF /* GameFieldProtocol.swift */,
+				5C7A72F8243A2B24008579BF /* GameViewController.swift */,
+				5C7A731A243AA948008579BF /* UIColor+extention.swift */,
 				5C7A72FA243A2B24008579BF /* Main.storyboard */,
 				5C7A7300243A2B29008579BF /* Assets.xcassets */,
 				5C7A7302243A2B29008579BF /* LaunchScreen.storyboard */,
@@ -82,6 +93,15 @@
 				5C7A730F243A2D3F008579BF /* Square.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5C7A7317243A3E85008579BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C7A7318243A43A3008579BF /* GameFieldView.swift */,
+				5C7A7315243A3E78008579BF /* SquareButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,10 +177,14 @@
 			files = (
 				5C7A7310243A2D3F008579BF /* Square.swift in Sources */,
 				5C7A72FF243A2B24008579BF /* EmojiSweeper.xcdatamodeld in Sources */,
+				5C7A731D243BB167008579BF /* GameFieldProtocol.swift in Sources */,
 				5C7A7312243A2DD2008579BF /* GameField.swift in Sources */,
-				5C7A72F9243A2B24008579BF /* ViewController.swift in Sources */,
+				5C7A731B243AA948008579BF /* UIColor+extention.swift in Sources */,
+				5C7A72F9243A2B24008579BF /* GameViewController.swift in Sources */,
 				5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */,
+				5C7A7316243A3E78008579BF /* SquareButton.swift in Sources */,
 				5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */,
+				5C7A7319243A43A3008579BF /* GameFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
