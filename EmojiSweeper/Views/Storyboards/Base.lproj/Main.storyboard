@@ -87,6 +87,9 @@
                     <navigationItem key="navigationItem" title="😎" largeTitleDisplayMode="always" id="ryk-lO-Wvo">
                         <barButtonItem key="leftBarButtonItem" image="text.justify" catalog="system" id="1BK-3e-p0P">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="QG7-og-xIk" kind="show" id="Zgk-9d-0KE"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="refresh" id="zR4-Sg-fML">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,6 +110,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="856.52173913043487" y="99.776785714285708"/>
+        </scene>
+        <!--Results View Controller-->
+        <scene sceneID="dUE-xm-Cx6">
+            <objects>
+                <tableViewController id="QG7-og-xIk" customClass="ResultsViewController" customModule="Sweeper" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oXr-Ze-lRA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="QG7-og-xIk" id="PKW-rI-hPl"/>
+                            <outlet property="delegate" destination="QG7-og-xIk" id="QfK-kW-SpV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="XyL-zf-w4X">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="vGT-si-7FQ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="actionBackButton:" destination="QG7-og-xIk" id="LCP-DD-fy0"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="cFm-AZ-GfA">
+                            <rect key="frame" x="119.5" y="5.5" width="175" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Top results"/>
+                                <segment title="All results"/>
+                            </segments>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" image="arrow.up.arrow.down" catalog="system" id="hr4-of-d3g">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mIw-U6-Rd6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1615" y="101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E7N-nG-uXr">
@@ -131,6 +173,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.arrow.down" catalog="system" width="128" height="96"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="text.justify" catalog="system" width="128" height="100"/>
     </resources>
 </document>
