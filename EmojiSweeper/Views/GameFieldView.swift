@@ -26,34 +26,35 @@ class GameFieldView: UIView {
         super.init(frame: frame)
     }
     
-    // MARK: - Public methods
+    // MARK: - Setup methods
     
-    func setupGame(rows: Int, columns: Int, mineCount: Int) {
+    func setupView(with rows: Int, columns: Int, mineCount: Int) {
         
-        gameField = GameField(rows: rows, colums: columns, mineCount: mineCount)
+        gameField = GameField(rows: rows, columns: columns, mineCount: mineCount)
         
         let width = self.bounds.width
         let height = self.bounds.height
-        
+
         let squareWidth = min(width / CGFloat(columns), height / CGFloat(rows))
         
         let leftInset = (width - squareWidth * CGFloat(columns)) / 2
         let topInset = (height - squareWidth * CGFloat(rows)) / 2
         
-        // Add square buttons
+        // Add square buttons to the view
         for i in 0..<rows {
             for j in 0..<columns {
-                let squareButton = SquareButton()
-                
                 let x = squareWidth * CGFloat(j) + leftInset
                 let y = squareWidth * CGFloat(i) + topInset
-                squareButton.frame = CGRect(x: x, y: y, width: squareWidth, height: squareWidth)
+                let frame = CGRect(x: x, y: y, width: squareWidth, height: squareWidth)
+                
+                let squareButton = SquareButton(frame: frame)
                 squareButton.tag = i * columns + j
+                
                 squareButton.addTarget(self, action: #selector(tapButton(_:)), for: .touchUpInside)
-                let longTapGesture = UILongPressGestureRecognizer(target: self,
-                                                                  action: #selector(longTapButton(_:)))
-                longTapGesture.minimumPressDuration = 0.2
-                squareButton.addGestureRecognizer(longTapGesture)
+                let longPressGesture =
+                    UILongPressGestureRecognizer(target: self, action: #selector(longPressButton(_:)))
+                longPressGesture.minimumPressDuration = 0.2
+                squareButton.addGestureRecognizer(longPressGesture)
                 
                 self.squareButtons.append(squareButton)
                 self.addSubview(squareButton)
@@ -62,14 +63,14 @@ class GameFieldView: UIView {
         
     }
     
-    func restartGame(rows: Int, columns: Int, mineCount: Int) {
+    func reloadView(with rows: Int, columns: Int, mineCount: Int) {
         squareButtons.forEach { square in
             square.removeFromSuperview()
         }
         squareButtons.removeAll()
         isUserInteractionEnabled = true
         gameIsStarted = false
-        setupGame(rows: rows, columns: columns, mineCount: mineCount)
+        setupView(with: rows, columns: columns, mineCount: mineCount)
     }
     
     // MARK: - Private methods
@@ -89,10 +90,10 @@ class GameFieldView: UIView {
     private func shouldOpenEmptySquare(_ row: Int, _ column: Int) -> Bool {
         let index = row * gameField.columns + column
         
-        let indexIsOutOfRange = row < 0 || column < 0 ||
+        let indexOutOfRange = row < 0 || column < 0 ||
             row >= gameField.rows || column >= gameField.columns
         
-        return !indexIsOutOfRange &&
+        return !indexOutOfRange &&
                squareButtons[index].condition == .close &&
                !gameField[row, column].isMine
     }
@@ -139,7 +140,6 @@ class GameFieldView: UIView {
     }
     
     private func mineIsTapped(_ mine: SquareButton) {
-        
         mine.gradientColor = .red
         mine.setTitle(Emoji.mine.rawValue, for: .normal)
         
@@ -174,11 +174,11 @@ class GameFieldView: UIView {
         let numberOfMines = gameField.numberOfMines(index: index)
         
         if numberOfMines == 0 {
-            let row = index / gameField.rows
+            let row = index / gameField.columns
             let column = index % gameField.columns
             openEmptySquares(row, column)
         } else {
-            square.gradientColor = .squareNumber(of: numberOfMines)
+            square.gradientColor = .color(of: numberOfMines)
             square.setTitle("\(numberOfMines)", for: .normal)
             square.condition = .open
         }
@@ -195,11 +195,15 @@ class GameFieldView: UIView {
         }
     }
     
-    @objc private func longTapButton(_ sender: UILongPressGestureRecognizer) {
+    @objc private func longPressButton(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began && gameIsStarted {
+            
+            // Taptic vibration feedback
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+            
             guard let square = sender.view as? SquareButton else { return }
             if square.condition == .flag {
-                square.setTitle("", for: .normal)
+                square.setTitle(nil, for: .normal)
                 square.condition = .close
                 delegate?.removeFlag?(self)
             } else {
@@ -208,6 +212,10 @@ class GameFieldView: UIView {
                 delegate?.addFlag?(self)
             }
         }
+    }
+    
+    deinit {
+        print("deinit: \(type(of: self))")
     }
     
 }

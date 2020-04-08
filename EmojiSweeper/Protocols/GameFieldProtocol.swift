@@ -10,9 +10,9 @@ import Foundation
 
 @objc protocol GameFieldDelegate {
     
-    func startGame(_ view: GameFieldView)
-    func finishGame(_ view: GameFieldView, isWinner: Bool)
+    func startGame(_ fieldView: GameFieldView)
+    func finishGame(_ fieldView: GameFieldView, isWinner: Bool)
 
-    @objc optional func addFlag(_ view: GameFieldView)
-    @objc optional func removeFlag(_ view: GameFieldView)
+    @objc optional func addFlag(_ fieldView: GameFieldView)
+    @objc optional func removeFlag(_ fieldView: GameFieldView)
 }

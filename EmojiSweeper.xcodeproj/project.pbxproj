@@ -21,10 +21,13 @@
 		5C7A731B243AA948008579BF /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A731A243AA948008579BF /* UIColor+extension.swift */; };
 		5C7A731D243BB167008579BF /* GameFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A731C243BB167008579BF /* GameFieldProtocol.swift */; };
 		5C7A7324243BCCDC008579BF /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7323243BCCDC008579BF /* Emoji.swift */; };
+		5C7A7326243D1C96008579BF /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7325243D1C96008579BF /* Levels.swift */; };
+		5C7A7329243D24B8008579BF /* Fart.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A7328243D24B8008579BF /* Fart.m4a */; };
+		5C7A732C243D4238008579BF /* CAGradientLayer+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A732B243D4238008579BF /* CAGradientLayer+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5C7A72F1243A2B24008579BF /* EmojiSweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiSweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C7A72F1243A2B24008579BF /* Sweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C7A72F4243A2B24008579BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C7A72F6243A2B24008579BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5C7A72F8243A2B24008579BF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +43,9 @@
 		5C7A731A243AA948008579BF /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		5C7A731C243BB167008579BF /* GameFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldProtocol.swift; sourceTree = "<group>"; };
 		5C7A7323243BCCDC008579BF /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		5C7A7325243D1C96008579BF /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
+		5C7A7328243D24B8008579BF /* Fart.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fart.m4a; sourceTree = "<group>"; };
+		5C7A732B243D4238008579BF /* CAGradientLayer+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +70,7 @@
 		5C7A72F2243A2B24008579BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C7A72F1243A2B24008579BF /* EmojiSweeper.app */,
+				5C7A72F1243A2B24008579BF /* Sweeper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +82,7 @@
 				5C7A7317243A3E85008579BF /* Views */,
 				5C7A7321243BB368008579BF /* View Controllers */,
 				5C7A731E243BB32D008579BF /* Protocols */,
+				5C7A732A243D4208008579BF /* Extensions */,
 				5C7A731F243BB33E008579BF /* Constants */,
 				5C7A7320243BB350008579BF /* Supporting files */,
 				5C7A7322243BB3E9008579BF /* Core Data */,
@@ -97,8 +104,7 @@
 			children = (
 				5C7A7318243A43A3008579BF /* GameFieldView.swift */,
 				5C7A7315243A3E78008579BF /* SquareButton.swift */,
-				5C7A72FA243A2B24008579BF /* Main.storyboard */,
-				5C7A7302243A2B29008579BF /* LaunchScreen.storyboard */,
+				5C7A732D243D433E008579BF /* Storyboards */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -115,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				5C7A7323243BCCDC008579BF /* Emoji.swift */,
-				5C7A731A243AA948008579BF /* UIColor+extension.swift */,
+				5C7A7325243D1C96008579BF /* Levels.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -123,6 +129,7 @@
 		5C7A7320243BB350008579BF /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				5C7A7327243D2499008579BF /* Sound */,
 				5C7A72F4243A2B24008579BF /* AppDelegate.swift */,
 				5C7A72F6243A2B24008579BF /* SceneDelegate.swift */,
 				5C7A7300243A2B29008579BF /* Assets.xcassets */,
@@ -147,6 +154,32 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
+		5C7A7327243D2499008579BF /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				5C7A7328243D24B8008579BF /* Fart.m4a */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		5C7A732A243D4208008579BF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5C7A731A243AA948008579BF /* UIColor+extension.swift */,
+				5C7A732B243D4238008579BF /* CAGradientLayer+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5C7A732D243D433E008579BF /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5C7A72FA243A2B24008579BF /* Main.storyboard */,
+				5C7A7302243A2B29008579BF /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,7 +197,7 @@
 			);
 			name = EmojiSweeper;
 			productName = EmojiSweeper;
-			productReference = 5C7A72F1243A2B24008579BF /* EmojiSweeper.app */;
+			productReference = 5C7A72F1243A2B24008579BF /* Sweeper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -206,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7A7304243A2B29008579BF /* LaunchScreen.storyboard in Resources */,
+				5C7A7329243D24B8008579BF /* Fart.m4a in Resources */,
 				5C7A7301243A2B29008579BF /* Assets.xcassets in Resources */,
 				5C7A72FC243A2B24008579BF /* Main.storyboard in Resources */,
 			);
@@ -224,9 +258,11 @@
 				5C7A731D243BB167008579BF /* GameFieldProtocol.swift in Sources */,
 				5C7A7312243A2DD2008579BF /* GameField.swift in Sources */,
 				5C7A731B243AA948008579BF /* UIColor+extension.swift in Sources */,
+				5C7A7326243D1C96008579BF /* Levels.swift in Sources */,
 				5C7A72F9243A2B24008579BF /* GameViewController.swift in Sources */,
 				5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */,
 				5C7A7316243A3E78008579BF /* SquareButton.swift in Sources */,
+				5C7A732C243D4238008579BF /* CAGradientLayer+extension.swift in Sources */,
 				5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */,
 				5C7A7319243A43A3008579BF /* GameFieldView.swift in Sources */,
 			);
@@ -381,7 +417,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krupskyi.EmojiSweeper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sweeper;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -400,7 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krupskyi.EmojiSweeper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sweeper;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

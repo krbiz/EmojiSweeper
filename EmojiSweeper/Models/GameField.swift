@@ -12,9 +12,9 @@ struct GameField {
     
     let rows: Int
     let columns: Int
-    
-    var grid = [Square]()
     let mineCount: Int
+    
+    var grid: [Square]
     
     subscript(row: Int, column: Int) -> Square {
         return grid[row * columns + column]
@@ -22,10 +22,20 @@ struct GameField {
     
     // MARK: - Initializations
     
-    init(rows: Int, colums: Int, mineCount: Int) {
+    init(rows: Int, columns: Int, mineCount: Int) {
+        
+        guard rows > 0 && columns > 0 else {
+            fatalError("Invalid field size")
+        }
+        guard mineCount <= rows * columns else {
+            fatalError("Invalid mines count")
+        }
+        
         self.rows = rows
-        self.columns = colums
+        self.columns = columns
         self.mineCount = mineCount
+        
+        self.grid = Array(repeating: Square(), count: rows * columns)
         
         setupGrid()
     }
@@ -33,12 +43,7 @@ struct GameField {
     // MARK: - Setup methods
     
     private mutating func setupGrid() {
-        // Create elements of array
-        for _ in 0..<(rows * columns) {
-            grid.append(Square())
-        }
-        
-        // Add mines to the game
+        // Add mines to the grid
         var minesLeft = mineCount
         while minesLeft != 0 {
             let index = Int.random(in: 0..<grid.count)
@@ -48,34 +53,34 @@ struct GameField {
         }
     }
     
-    // MARK:  - Public methods
+    // MARK: - Public methods
     
-    // Calculate number of mines in the square
+    // Calculate number of mines around the square
     func numberOfMines(_ row: Int, _ column: Int) -> Int {
         var minesCount = 0
         
-        if isMine(row - 1, column - 1) {
+        if squareIsMine(row - 1, column - 1) {
             minesCount += 1
         }
-        if isMine(row - 1, column) {
+        if squareIsMine(row - 1, column) {
             minesCount += 1
         }
-        if isMine(row - 1, column + 1) {
+        if squareIsMine(row - 1, column + 1) {
             minesCount += 1
         }
-        if isMine(row, column - 1) {
+        if squareIsMine(row, column - 1) {
             minesCount += 1
         }
-        if isMine(row, column + 1) {
+        if squareIsMine(row, column + 1) {
             minesCount += 1
         }
-        if isMine(row + 1, column - 1) {
+        if squareIsMine(row + 1, column - 1) {
             minesCount += 1
         }
-        if isMine(row + 1, column) {
+        if squareIsMine(row + 1, column) {
             minesCount += 1
         }
-        if isMine(row + 1, column + 1) {
+        if squareIsMine(row + 1, column + 1) {
             minesCount += 1
         }
         
@@ -91,12 +96,12 @@ struct GameField {
     
     // MARK: - Private methods
     
-    // Check if a square is mine
-    private func isMine(_ row: Int, _ column: Int) -> Bool {
-        if row < 0 || column < 0 || row >= rows || column >= columns {
-            return false
-        }
-        return self[row, column].isMine
+    private func indexOutOfRange(_ row: Int, _ column: Int) -> Bool {
+        return row < 0 || column < 0 || row >= rows || column >= columns
+    }
+    
+    private func squareIsMine(_ row: Int, _ column: Int) -> Bool {
+        return !indexOutOfRange(row, column) && self[row, column].isMine
     }
     
 }

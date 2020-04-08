@@ -7,12 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController {
     
-    var rows = 9
-    var columns = 9
-    var mineCount = 10
+    var levelSettings = LevelSettings.settings(.beginner)
     
     var mineCountLeft = 0 {
         didSet {
@@ -31,6 +30,7 @@ class GameViewController: UIViewController {
     
     var timer: Timer?
     var gradientBG: CAGradientLayer?
+    var fartSoundEffect: AVAudioPlayer?
     
     @IBOutlet weak var fieldView: GameFieldView!
     @IBOutlet weak var minesLeftInfoLabel: UILabel!
@@ -42,19 +42,21 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
-
-        fieldView.setupGame(rows: rows, columns: columns, mineCount: mineCount)
-        fieldView.delegate = self
     }
     
     override func viewWillLayoutSubviews() {
         gradientBG?.frame = self.view.bounds
     }
     
-    private func setupUI() {
-        mineCountLeft = mineCount
+    func setupUI() {
+        mineCountLeft = levelSettings.mineCount
+        
+        // Setup fieldView
+        fieldView.setupView(with: levelSettings.rows,
+                            columns: levelSettings.colums,
+                            mineCount: levelSettings.mineCount)
+        fieldView.delegate = self
         
         // Add background gradient
         gradientBG = CAGradientLayer()
@@ -63,51 +65,48 @@ class GameViewController: UIViewController {
         setGreyBackgroundGradient()
         self.view.layer.insertSublayer(gradientBG!, at: 0)
         
-        // Segmented Control
+        // Setup Segmented Control
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        
+        // Setup fart sound effect
+        if let bundle = Bundle.main.path(forResource: "Fart", ofType: "m4a") {
+            let url = URL(fileURLWithPath: bundle)
+            fartSoundEffect = try? AVAudioPlayer(contentsOf: url)
+        }
     }
     
     func restartGame() {
         navigationItem.title = Emoji.cool.rawValue
-        mineCountLeft = mineCount
+        mineCountLeft = levelSettings.mineCount
         secondsInGame = 0
         setGreyBackgroundGradient()
         timer?.invalidate()
-        fieldView.restartGame(rows: rows, columns: columns, mineCount: mineCount)
+        fieldView.reloadView(with: levelSettings.rows,
+                             columns: levelSettings.colums,
+                             mineCount: levelSettings.mineCount)
     }
     
     // MARK: - Gradient methods
 
     func setGreyBackgroundGradient() {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        
-        gradientBG?.colors = [UIColor.black.cgColor, UIColor.bgBaseColor.cgColor]
-        
-        CATransaction.commit()
+        let colors = [UIColor.black.cgColor,
+                      UIColor.bgBaseColor.cgColor]
+        gradientBG?.updateColorsWithoutAnimation(colors)
     }
     
     func setRedBackgroundGradient() {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        
-        gradientBG?.colors = [UIColor.black.cgColor,
-                              UIColor.bgRedColor.cgColor,
-                              UIColor.black.cgColor]
-        
-        CATransaction.commit()
+        let colors = [UIColor.black.cgColor,
+                      UIColor.bgRedColor.cgColor,
+                      UIColor.black.cgColor]
+        gradientBG?.updateColorsWithoutAnimation(colors)
     }
     
     func setGreenBackgroundGradient() {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        
-        gradientBG?.colors = [UIColor.black.cgColor,
-                              UIColor.bgGreenColor.cgColor,
-                              UIColor.black.cgColor]
-        
-        CATransaction.commit()
+        let colors = [UIColor.black.cgColor,
+                      UIColor.bgGreenColor.cgColor,
+                      UIColor.black.cgColor]
+        gradientBG?.updateColorsWithoutAnimation(colors)
     }
     
     // MARK: - IB Actions
@@ -119,17 +118,11 @@ class GameViewController: UIViewController {
     @IBAction func actionChangeGameLevel(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            rows = 9
-            columns = 9
-            mineCount = 10
+            levelSettings = LevelSettings.settings(.beginner)
         case 1:
-            rows = 13
-            columns = 12
-            mineCount = 20
+            levelSettings = LevelSettings.settings(.intermediate)
         case 2:
-            rows = 19
-            columns = 14
-            mineCount = 50
+            levelSettings = LevelSettings.settings(.expert)
         default:
             return
         }
@@ -137,35 +130,35 @@ class GameViewController: UIViewController {
         restartGame()
     }
     
-    
 }
 
-// MARK:  - GameField Delegate
+// MARK: - GameField Delegate
 
 extension GameViewController: GameFieldDelegate {
     
-    func startGame(_ veiw: GameFieldView) {
+    func startGame(_ fieldView: GameFieldView) {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             self.secondsInGame += 1
         })
     }
     
-    func finishGame(_ view: GameFieldView, isWinner: Bool) {
+    func finishGame(_ fieldView: GameFieldView, isWinner: Bool) {
         timer?.invalidate()
         if isWinner {
             navigationItem.title = Emoji.party.rawValue
             setGreenBackgroundGradient()
         } else {
+            fartSoundEffect?.play()
             navigationItem.title = Emoji.dizzy.rawValue
             setRedBackgroundGradient()
         }
     }
     
-    func addFlag(_ view: GameFieldView) {
+    func addFlag(_ fieldView: GameFieldView) {
         mineCountLeft -= 1
     }
     
-    func removeFlag(_ view: GameFieldView) {
+    func removeFlag(_ fieldView: GameFieldView) {
         mineCountLeft += 1
     }
     

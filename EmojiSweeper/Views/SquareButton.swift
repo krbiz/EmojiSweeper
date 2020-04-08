@@ -10,32 +10,25 @@ import UIKit
 
 class SquareButton: UIButton {
     
+    // State of squareButton
     enum Condition {
         case close
         case open
         case flag
     }
     
-    // State of squareButton
     var condition: Condition = .close
+    let gradient = CAGradientLayer()
     
     // Gradient color of squareButton
     var gradientColor = UIColor.baseColor {
         didSet {
-            // Disable animation when gradient color is changed
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            
-            // Update gradient colors
-            gradient.colors = [gradientColor.cgColor,
-                               UIColor.black.cgColor,
-                               gradientColor.cgColor]
-            
-            CATransaction.commit()
+            let colors = [gradientColor.cgColor,
+                          UIColor.black.cgColor,
+                          gradientColor.cgColor]
+            gradient.updateColorsWithoutAnimation(colors)
         }
     }
-    
-    private let gradient = CAGradientLayer()
     
     // MARK: - Initializations
     
