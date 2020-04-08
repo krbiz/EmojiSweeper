@@ -29,7 +29,6 @@ class GameViewController: UIViewController {
     }
     
     var timer: Timer?
-    var gradientBG: CAGradientLayer?
     var fartSoundEffect: AVAudioPlayer?
     
     @IBOutlet weak var fieldView: GameFieldView!
@@ -45,9 +44,7 @@ class GameViewController: UIViewController {
         setupUI()
     }
     
-    override func viewWillLayoutSubviews() {
-        gradientBG?.frame = self.view.bounds
-    }
+    // MARK: - Setup methods
     
     func setupUI() {
         mineCountLeft = levelSettings.mineCount
@@ -59,11 +56,7 @@ class GameViewController: UIViewController {
         fieldView.delegate = self
         
         // Add background gradient
-        gradientBG = CAGradientLayer()
-        gradientBG?.startPoint = CGPoint(x: 0, y: 0)
-        gradientBG?.endPoint = CGPoint(x: 0, y: 1)
-        setGreyBackgroundGradient()
-        self.view.layer.insertSublayer(gradientBG!, at: 0)
+        view.setGradient(with: .bgGrayColor, type: .axial, isSymmetricalEdges: false)
         
         // Setup Segmented Control
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
@@ -80,33 +73,11 @@ class GameViewController: UIViewController {
         navigationItem.title = Emoji.cool.rawValue
         mineCountLeft = levelSettings.mineCount
         secondsInGame = 0
-        setGreyBackgroundGradient()
+        view.setGradient(with: .bgGrayColor, type: .axial, isSymmetricalEdges: false)
         timer?.invalidate()
         fieldView.reloadView(with: levelSettings.rows,
                              columns: levelSettings.colums,
                              mineCount: levelSettings.mineCount)
-    }
-    
-    // MARK: - Gradient methods
-
-    func setGreyBackgroundGradient() {
-        let colors = [UIColor.black.cgColor,
-                      UIColor.bgBaseColor.cgColor]
-        gradientBG?.updateColorsWithoutAnimation(colors)
-    }
-    
-    func setRedBackgroundGradient() {
-        let colors = [UIColor.black.cgColor,
-                      UIColor.bgRedColor.cgColor,
-                      UIColor.black.cgColor]
-        gradientBG?.updateColorsWithoutAnimation(colors)
-    }
-    
-    func setGreenBackgroundGradient() {
-        let colors = [UIColor.black.cgColor,
-                      UIColor.bgGreenColor.cgColor,
-                      UIColor.black.cgColor]
-        gradientBG?.updateColorsWithoutAnimation(colors)
     }
     
     // MARK: - IB Actions
@@ -146,11 +117,11 @@ extension GameViewController: GameFieldDelegate {
         timer?.invalidate()
         if isWinner {
             navigationItem.title = Emoji.party.rawValue
-            setGreenBackgroundGradient()
+            view.setGradient(with: .bgGreenColor, type: .axial)
         } else {
             fartSoundEffect?.play()
             navigationItem.title = Emoji.dizzy.rawValue
-            setRedBackgroundGradient()
+            view.setGradient(with: .bgRedColor, type: .axial)
         }
     }
     

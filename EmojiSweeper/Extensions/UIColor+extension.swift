@@ -22,7 +22,7 @@ extension UIColor {
     class var mines8Color: UIColor { return #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1) }
     
     // Color of background view
-    class var bgBaseColor:  UIColor { return #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1) }
+    class var bgGrayColor:  UIColor { return #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1) }
     class var bgRedColor:   UIColor { return #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1) }
     class var bgGreenColor: UIColor { return #colorLiteral(red: 0.1623920798, green: 0.6246709228, blue: 0.09199859947, alpha: 1) }
     

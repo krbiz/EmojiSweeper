@@ -102,7 +102,7 @@ class GameFieldView: UIView {
     private func openEmptySquares(_ row: Int, _ column: Int) {
         let index = row * gameField.columns + column
         squareButtons[index].condition = .open
-        squareButtons[index].gradientColor = .black
+        squareButtons[index].setGradient(with: .black, type: .conic)
         squareButtons[index].isEnabled = false
         
         if gameField.numberOfMines(row, column) > 0 {
@@ -140,7 +140,7 @@ class GameFieldView: UIView {
     }
     
     private func mineIsTapped(_ mine: SquareButton) {
-        mine.gradientColor = .red
+        mine.setGradient(with: .red, type: .conic)
         mine.setTitle(Emoji.mine.rawValue, for: .normal)
         
         for (index, square) in gameField.grid.enumerated() {
@@ -178,7 +178,7 @@ class GameFieldView: UIView {
             let column = index % gameField.columns
             openEmptySquares(row, column)
         } else {
-            square.gradientColor = .color(of: numberOfMines)
+            square.setGradient(with: .color(of: numberOfMines), type: .conic)
             square.setTitle("\(numberOfMines)", for: .normal)
             square.condition = .open
         }

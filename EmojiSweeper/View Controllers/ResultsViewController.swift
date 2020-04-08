@@ -17,6 +17,9 @@ class ResultsViewController: UITableViewController {
         tableView.register(resultCell, forCellReuseIdentifier: "ResultCell")
         tableView.tableFooterView = UIView()
         
+        // Add background gradient
+        view.setGradient(with: .bgGrayColor, type: .axial, isSymmetricalEdges: false)
+        
     }
     
     @IBAction func actionBackButton(_ sender: UIBarButtonItem) {

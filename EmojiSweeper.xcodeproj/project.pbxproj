@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5C537CF9243E0A7100C4DC0A /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C537CF7243E0A7100C4DC0A /* ResultCell.swift */; };
 		5C537CFA243E0A7100C4DC0A /* ResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C537CF8243E0A7100C4DC0A /* ResultCell.xib */; };
+		5C537CFC243E437D00C4DC0A /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C537CFB243E437D00C4DC0A /* UIView+extension.swift */; };
 		5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F4243A2B24008579BF /* AppDelegate.swift */; };
 		5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F6243A2B24008579BF /* SceneDelegate.swift */; };
 		5C7A72F9243A2B24008579BF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F8243A2B24008579BF /* GameViewController.swift */; };
@@ -25,13 +26,13 @@
 		5C7A7324243BCCDC008579BF /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7323243BCCDC008579BF /* Emoji.swift */; };
 		5C7A7326243D1C96008579BF /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7325243D1C96008579BF /* Levels.swift */; };
 		5C7A7329243D24B8008579BF /* Fart.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A7328243D24B8008579BF /* Fart.m4a */; };
-		5C7A732C243D4238008579BF /* CAGradientLayer+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A732B243D4238008579BF /* CAGradientLayer+extension.swift */; };
 		5C7A732F243D55E4008579BF /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A732E243D55E4008579BF /* ResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5C537CF7243E0A7100C4DC0A /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		5C537CF8243E0A7100C4DC0A /* ResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCell.xib; sourceTree = "<group>"; };
+		5C537CFB243E437D00C4DC0A /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		5C7A72F1243A2B24008579BF /* Sweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C7A72F4243A2B24008579BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C7A72F6243A2B24008579BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		5C7A7323243BCCDC008579BF /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		5C7A7325243D1C96008579BF /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		5C7A7328243D24B8008579BF /* Fart.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fart.m4a; sourceTree = "<group>"; };
-		5C7A732B243D4238008579BF /* CAGradientLayer+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+extension.swift"; sourceTree = "<group>"; };
 		5C7A732E243D55E4008579BF /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				5C7A731A243AA948008579BF /* UIColor+extension.swift */,
-				5C7A732B243D4238008579BF /* CAGradientLayer+extension.swift */,
+				5C537CFB243E437D00C4DC0A /* UIView+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -264,6 +264,7 @@
 			files = (
 				5C7A7324243BCCDC008579BF /* Emoji.swift in Sources */,
 				5C7A7310243A2D3F008579BF /* Square.swift in Sources */,
+				5C537CFC243E437D00C4DC0A /* UIView+extension.swift in Sources */,
 				5C7A72FF243A2B24008579BF /* EmojiSweeper.xcdatamodeld in Sources */,
 				5C7A731D243BB167008579BF /* GameFieldProtocol.swift in Sources */,
 				5C7A7312243A2DD2008579BF /* GameField.swift in Sources */,
@@ -274,7 +275,6 @@
 				5C7A732F243D55E4008579BF /* ResultsViewController.swift in Sources */,
 				5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */,
 				5C7A7316243A3E78008579BF /* SquareButton.swift in Sources */,
-				5C7A732C243D4238008579BF /* CAGradientLayer+extension.swift in Sources */,
 				5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */,
 				5C7A7319243A43A3008579BF /* GameFieldView.swift in Sources */,
 			);
