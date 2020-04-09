@@ -8,13 +8,27 @@
 
 import Foundation
 
-enum Level {
+enum Level: Int, CaseIterable {
+    
     case beginner
     case intermediate
     case expert
+    
+    var description: String {
+        switch self {
+        case .beginner:
+            return "Beginner"
+        case .intermediate:
+            return "Intermediate"
+        case .expert:
+            return "Expert"
+        }
+    }
+    
 }
 
 struct LevelSettings {
+    
     let rows: Int
     let colums: Int
     let mineCount: Int

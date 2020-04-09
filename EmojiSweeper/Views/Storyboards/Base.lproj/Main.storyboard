@@ -84,7 +84,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="😎" largeTitleDisplayMode="always" id="ryk-lO-Wvo">
+                    <navigationItem key="navigationItem" title="😎" id="ryk-lO-Wvo">
                         <barButtonItem key="leftBarButtonItem" image="text.justify" catalog="system" id="1BK-3e-p0P">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -115,18 +115,35 @@
         <scene sceneID="dUE-xm-Cx6">
             <objects>
                 <tableViewController id="QG7-og-xIk" customClass="ResultsViewController" customModule="Sweeper" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oXr-Ze-lRA">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oXr-Ze-lRA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="FNI-vb-UHE">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total wins: 13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czT-ml-Igu">
+                                    <rect key="frame" x="15" y="14.5" width="384" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="czT-ml-Igu" firstAttribute="leading" secondItem="FNI-vb-UHE" secondAttribute="leading" constant="15" id="Bgc-Qc-GZj"/>
+                                <constraint firstItem="czT-ml-Igu" firstAttribute="centerY" secondItem="FNI-vb-UHE" secondAttribute="centerY" id="Mvm-7H-haW"/>
+                                <constraint firstAttribute="trailing" secondItem="czT-ml-Igu" secondAttribute="trailing" constant="15" id="SWf-8p-IZs"/>
+                            </constraints>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="QG7-og-xIk" id="PKW-rI-hPl"/>
                             <outlet property="delegate" destination="QG7-og-xIk" id="QfK-kW-SpV"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="XyL-zf-w4X">
-                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="vGT-si-7FQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -140,11 +157,20 @@
                                 <segment title="Top results"/>
                                 <segment title="All results"/>
                             </segments>
+                            <connections>
+                                <action selector="actionFilterResults:" destination="QG7-og-xIk" eventType="valueChanged" id="9kq-ef-Dbc"/>
+                            </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" image="arrow.up.arrow.down" catalog="system" id="hr4-of-d3g">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="hr4-of-d3g">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="actionClearResult:" destination="QG7-og-xIk" id="j1H-dd-0QJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="totalWinsLabel" destination="czT-ml-Igu" id="0KV-av-wOT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mIw-U6-Rd6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -173,7 +199,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.up.arrow.down" catalog="system" width="128" height="96"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="text.justify" catalog="system" width="128" height="100"/>
     </resources>

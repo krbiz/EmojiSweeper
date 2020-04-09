@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C1B477F243F605A007D96BA /* UserResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B477D243F605A007D96BA /* UserResult+CoreDataClass.swift */; };
+		5C1B4780243F605A007D96BA /* UserResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B477E243F605A007D96BA /* UserResult+CoreDataProperties.swift */; };
+		5C1B4782243FB5C1007D96BA /* ResultsViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B4781243FB5C1007D96BA /* ResultsViewController+DataSource.swift */; };
 		5C537CF9243E0A7100C4DC0A /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C537CF7243E0A7100C4DC0A /* ResultCell.swift */; };
 		5C537CFA243E0A7100C4DC0A /* ResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C537CF8243E0A7100C4DC0A /* ResultCell.xib */; };
 		5C537CFC243E437D00C4DC0A /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C537CFB243E437D00C4DC0A /* UIView+extension.swift */; };
+		5C537CFE243E8B7C00C4DC0A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C537CFD243E8B7C00C4DC0A /* CoreDataManager.swift */; };
 		5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F4243A2B24008579BF /* AppDelegate.swift */; };
 		5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F6243A2B24008579BF /* SceneDelegate.swift */; };
 		5C7A72F9243A2B24008579BF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A72F8243A2B24008579BF /* GameViewController.swift */; };
@@ -30,9 +34,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C1B477D243F605A007D96BA /* UserResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserResult+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5C1B477E243F605A007D96BA /* UserResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5C1B4781243FB5C1007D96BA /* ResultsViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsViewController+DataSource.swift"; sourceTree = "<group>"; };
 		5C537CF7243E0A7100C4DC0A /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		5C537CF8243E0A7100C4DC0A /* ResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCell.xib; sourceTree = "<group>"; };
 		5C537CFB243E437D00C4DC0A /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
+		5C537CFD243E8B7C00C4DC0A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5C7A72F1243A2B24008579BF /* Sweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C7A72F4243A2B24008579BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C7A72F6243A2B24008579BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +98,7 @@
 				5C7A731E243BB32D008579BF /* Protocols */,
 				5C7A732A243D4208008579BF /* Extensions */,
 				5C7A731F243BB33E008579BF /* Constants */,
-				5C7A7322243BB3E9008579BF /* Core Data */,
+				5C7A7322243BB3E9008579BF /* CoreData */,
 				5C7A7320243BB350008579BF /* Supporting files */,
 			);
 			path = EmojiSweeper;
@@ -150,16 +158,20 @@
 			children = (
 				5C7A72F8243A2B24008579BF /* GameViewController.swift */,
 				5C7A732E243D55E4008579BF /* ResultsViewController.swift */,
+				5C1B4781243FB5C1007D96BA /* ResultsViewController+DataSource.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		5C7A7322243BB3E9008579BF /* Core Data */ = {
+		5C7A7322243BB3E9008579BF /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				5C537CFD243E8B7C00C4DC0A /* CoreDataManager.swift */,
+				5C1B477D243F605A007D96BA /* UserResult+CoreDataClass.swift */,
+				5C1B477E243F605A007D96BA /* UserResult+CoreDataProperties.swift */,
 				5C7A72FD243A2B24008579BF /* EmojiSweeper.xcdatamodeld */,
 			);
-			path = "Core Data";
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		5C7A7327243D2499008579BF /* Sound */ = {
@@ -269,13 +281,17 @@
 				5C7A731D243BB167008579BF /* GameFieldProtocol.swift in Sources */,
 				5C7A7312243A2DD2008579BF /* GameField.swift in Sources */,
 				5C7A731B243AA948008579BF /* UIColor+extension.swift in Sources */,
+				5C1B4780243F605A007D96BA /* UserResult+CoreDataProperties.swift in Sources */,
+				5C1B4782243FB5C1007D96BA /* ResultsViewController+DataSource.swift in Sources */,
 				5C7A7326243D1C96008579BF /* Levels.swift in Sources */,
 				5C7A72F9243A2B24008579BF /* GameViewController.swift in Sources */,
 				5C537CF9243E0A7100C4DC0A /* ResultCell.swift in Sources */,
 				5C7A732F243D55E4008579BF /* ResultsViewController.swift in Sources */,
 				5C7A72F5243A2B24008579BF /* AppDelegate.swift in Sources */,
 				5C7A7316243A3E78008579BF /* SquareButton.swift in Sources */,
+				5C1B477F243F605A007D96BA /* UserResult+CoreDataClass.swift in Sources */,
 				5C7A72F7243A2B24008579BF /* SceneDelegate.swift in Sources */,
+				5C537CFE243E8B7C00C4DC0A /* CoreDataManager.swift in Sources */,
 				5C7A7319243A43A3008579BF /* GameFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

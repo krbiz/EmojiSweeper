@@ -9,92 +9,115 @@
 import UIKit
 
 class ResultsViewController: UITableViewController {
+    
+    let resultsViewCellIdentifier = "ResultCell"
+    let resultCellNibName = "ResultCell"
+    
+    var results = [UserResult]()
+    var levels = [Level]()
+    
+    var isTopResultsOnly = true {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
+    @IBOutlet weak var totalWinsLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let resultCell = UINib(nibName: "ResultCell", bundle: nil)
-        tableView.register(resultCell, forCellReuseIdentifier: "ResultCell")
-        tableView.tableFooterView = UIView()
+        let resultCell = UINib(nibName: resultCellNibName, bundle: nil)
+        tableView.register(resultCell, forCellReuseIdentifier: resultsViewCellIdentifier)
+        tableView.tableFooterView =
+            UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
-        // Add background gradient
-        view.setGradient(with: .bgGrayColor, type: .axial, isSymmetricalEdges: false)
-        
+        setupDataSource()
+        //setupInputData()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        totalWinsLabel.text = "Total wins: \(results.count)"
     }
     
     @IBAction func actionBackButton(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func actionFilterResults(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            isTopResultsOnly = true
+        } else {
+            isTopResultsOnly = false
+        }
+    }
+    
+    @IBAction func actionClearResult(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: nil,
+                                      message: "Are you sure you want to delete history?",
+                                      preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.removeAllData()
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+}
+    
 
-    // MARK: - Table view data source
+// MARK: - UITableViewDataSource
+    
+extension ResultsViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        levels.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 10
+        let levelSection = levels[section]
+        let quantitySection = quantity(forLevel: levelSection)
+        return isTopResultsOnly ? min(quantitySection, 3) : quantitySection
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let levelSectionIndex = levels[section].rawValue
+        let description = Level(rawValue: levelSectionIndex)?.description
+        return description
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: resultsViewCellIdentifier,
+                                                 for: indexPath) as! ResultCell
 
-        cell.textLabel?.text = "hello"
-        cell.detailTextLabel?.text = "world"
-        cell.textLabel?.tintColor = .white
-        cell.detailTextLabel?.tintColor = .white
-
+        let cellResult = result(forIndexPath: indexPath)
+        
+        cell.timeLabel.text = cellResult.timeFormat()
+        cell.dateLabel.text = cellResult.dateFormat()
+        cell.bestTimeLabel.isHidden = indexPath.row == 0 ? false : true
+        
         return cell
     }
+
+}
+
+// MARK: - UITableViewDelegate
+
+extension ResultsViewController {
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.contentView.backgroundColor = .bgGrayColor
+        headerView.textLabel?.textColor = .white
+        headerView.textLabel?.textAlignment = .center
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

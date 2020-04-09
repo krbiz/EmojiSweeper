@@ -11,7 +11,11 @@ import AVFoundation
 
 class GameViewController: UIViewController {
     
-    var levelSettings = LevelSettings.settings(.beginner)
+    var level = Level.beginner
+    
+    var levelSettings: LevelSettings {
+        return LevelSettings.settings(level)
+    }
     
     var mineCountLeft = 0 {
         didSet {
@@ -59,6 +63,11 @@ class GameViewController: UIViewController {
         view.setGradient(with: .bgGrayColor, type: .axial, isSymmetricalEdges: false)
         
         // Setup Segmented Control
+        segmentedControl.removeAllSegments()
+        for level in Level.allCases.reversed() {
+            segmentedControl.insertSegment(withTitle: level.description, at: 0, animated: false)
+        }
+        segmentedControl.selectedSegmentIndex = 0
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         
@@ -87,17 +96,8 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func actionChangeGameLevel(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            levelSettings = LevelSettings.settings(.beginner)
-        case 1:
-            levelSettings = LevelSettings.settings(.intermediate)
-        case 2:
-            levelSettings = LevelSettings.settings(.expert)
-        default:
-            return
-        }
-        
+        let index = sender.selectedSegmentIndex
+        level = Level(rawValue: index)!
         restartGame()
     }
     
@@ -118,6 +118,7 @@ extension GameViewController: GameFieldDelegate {
         if isWinner {
             navigationItem.title = Emoji.party.rawValue
             view.setGradient(with: .bgGreenColor, type: .axial)
+            CoreDataManager.saveResult(timeInSeconds: secondsInGame, level: level)
         } else {
             fartSoundEffect?.play()
             navigationItem.title = Emoji.dizzy.rawValue
