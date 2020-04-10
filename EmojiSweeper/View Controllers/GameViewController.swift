@@ -71,6 +71,14 @@ class GameViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer.addTarget(self, action: #selector(tapViewGestureRecognizer(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Localize UI
+        self.localize()
+    }
+    
+    func localize() {
+        minesLeftInfoLabel.text = NSLocalizedString("Mines left", comment: "")
+        timerInfoLabel.text = NSLocalizedString("Time", comment: "")
     }
     
     func restartGame() {

@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  EmojiSweeper
+
+  Created by Dima Krupskyi on 10.04.2020.
+  Copyright © 2020 Dima Krupskyi. All rights reserved.
+*/
+
+"Beginner" = "Beginner";
+"Intermediate" = "Intermediate";
+"Expert" = "Expert";
+
+"Mines left" = "Mines left";
+"Time" = "Time";
+
+"Top results" = "Top results";
+"All results" = "All results";
+"Total wins" = "Total wins";
+"Are you sure you want to delete the history?" = "Are you sure you want to delete the history?";
+"Delete" = "Delete";
+"Cancel" = "Cancel";

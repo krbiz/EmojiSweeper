@@ -17,11 +17,11 @@ enum Level: Int, CaseIterable {
     var description: String {
         switch self {
         case .beginner:
-            return "Beginner"
+            return NSLocalizedString("Beginner", comment: "")
         case .intermediate:
-            return "Intermediate"
+            return NSLocalizedString("Intermediate", comment: "")
         case .expert:
-            return "Expert"
+            return NSLocalizedString("Expert", comment: "")
         }
     }
     

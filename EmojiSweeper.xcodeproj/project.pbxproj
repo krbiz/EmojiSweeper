@@ -11,6 +11,7 @@
 		5C1B4780243F605A007D96BA /* UserResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B477E243F605A007D96BA /* UserResult+CoreDataProperties.swift */; };
 		5C1B4782243FB5C1007D96BA /* ResultsViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B4781243FB5C1007D96BA /* ResultsViewController+DataSource.swift */; };
 		5C1B478424409190007D96BA /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B478324409190007D96BA /* String+extension.swift */; };
+		5C1B47872440D2BE007D96BA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B47892440D2BE007D96BA /* Localizable.strings */; };
 		5C537CF9243E0A7100C4DC0A /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C537CF7243E0A7100C4DC0A /* ResultCell.swift */; };
 		5C537CFA243E0A7100C4DC0A /* ResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C537CF8243E0A7100C4DC0A /* ResultCell.xib */; };
 		5C537CFC243E437D00C4DC0A /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C537CFB243E437D00C4DC0A /* UIView+extension.swift */; };
@@ -38,6 +39,7 @@
 		5C1B477E243F605A007D96BA /* UserResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5C1B4781243FB5C1007D96BA /* ResultsViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsViewController+DataSource.swift"; sourceTree = "<group>"; };
 		5C1B478324409190007D96BA /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
+		5C1B47882440D2BE007D96BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5C537CF7243E0A7100C4DC0A /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		5C537CF8243E0A7100C4DC0A /* ResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCell.xib; sourceTree = "<group>"; };
 		5C537CFB243E437D00C4DC0A /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				5C7A72F4243A2B24008579BF /* AppDelegate.swift */,
 				5C7A72F6243A2B24008579BF /* SceneDelegate.swift */,
 				5C7A7300243A2B29008579BF /* Assets.xcassets */,
+				5C1B47892440D2BE007D96BA /* Localizable.strings */,
 				5C7A7305243A2B29008579BF /* Info.plist */,
 			);
 			path = "Supporting files";
@@ -251,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C1B47872440D2BE007D96BA /* Localizable.strings in Resources */,
 				5C7A7304243A2B29008579BF /* LaunchScreen.storyboard in Resources */,
 				5C7A7301243A2B29008579BF /* Assets.xcassets in Resources */,
 				5C7A72FC243A2B24008579BF /* Main.storyboard in Resources */,
@@ -291,6 +295,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5C1B47892440D2BE007D96BA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C1B47882440D2BE007D96BA /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		5C7A72FA243A2B24008579BF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -23,6 +23,7 @@ class ResultsViewController: UITableViewController {
     }
 
     @IBOutlet weak var totalWinsLabel: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     // MARK: - Setup methods
     
@@ -35,12 +36,20 @@ class ResultsViewController: UITableViewController {
             UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
         setupDataSource()
+        
+        localize()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        totalWinsLabel.text = "Total wins: \(results.count)"
+        let text = String(format: "%@: %d", NSLocalizedString("Total wins", comment: ""), results.count)
+        totalWinsLabel.text = text
         navigationItem.rightBarButtonItem?.isEnabled = results.count == 0 ? false : true
+    }
+    
+    func localize() {
+        segmentedControl.setTitle(NSLocalizedString("Top results", comment: ""), forSegmentAt: 0)
+        segmentedControl.setTitle(NSLocalizedString("All results", comment: ""), forSegmentAt: 1)
     }
     
     // MARK: - IBActions
@@ -58,14 +67,18 @@ class ResultsViewController: UITableViewController {
     }
     
     @IBAction func actionClearResult(_ sender: UIBarButtonItem) {
+        let message = NSLocalizedString("Are you sure you want to delete the history?", comment: "")
+        let deleteButtonTitle = NSLocalizedString("Delete", comment: "")
+        let cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
+        
         let alert = UIAlertController(title: nil,
-                                      message: "Are you sure you want to delete the history?",
+                                      message: message,
                                       preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+        let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .destructive) { _ in
             self.removeAllData()
             self.tableView.reloadData()
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel)
         
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
@@ -76,7 +89,7 @@ class ResultsViewController: UITableViewController {
     // MARK: -
     
     deinit {
-        print("deinit: \(type(of: self))")
+        print("deinit of \(type(of: self))")
     }
     
 }
