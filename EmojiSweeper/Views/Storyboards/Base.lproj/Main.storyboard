@@ -40,16 +40,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MlL-Ab-9CQ">
-                                        <rect key="frame" x="189" y="0.0" width="185" height="88.5"/>
+                                        <rect key="frame" x="265.5" y="0.0" width="108.5" height="88.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xl-aA-o2M">
-                                                <rect key="frame" x="142" y="0.0" width="43" height="20.5"/>
+                                                <rect key="frame" x="65.5" y="0.0" width="43" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjx-yr-8iY">
-                                                <rect key="frame" x="0.0" y="28.5" width="185" height="60"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjx-yr-8iY">
+                                                <rect key="frame" x="0.0" y="28.5" width="108.5" height="60"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>

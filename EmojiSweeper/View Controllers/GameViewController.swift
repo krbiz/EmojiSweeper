@@ -31,7 +31,6 @@ class GameViewController: UIViewController {
     }
     
     var timer: Timer?
-    var fartSoundEffect: AVAudioPlayer?
     var isGameFinished = false
     
     @IBOutlet weak var fieldView: GameFieldView!
@@ -73,12 +72,6 @@ class GameViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer.addTarget(self, action: #selector(tapViewGestureRecognizer(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
-        
-        // Setup fart sound effect
-        if let bundle = Bundle.main.path(forResource: "Fart", ofType: "m4a") {
-            let url = URL(fileURLWithPath: bundle)
-            fartSoundEffect = try? AVAudioPlayer(contentsOf: url)
-        }
     }
     
     func restartGame() {
@@ -133,7 +126,6 @@ extension GameViewController: GameFieldDelegate {
             view.setGradient(with: .bgGreenColor, type: .axial)
             CoreDataManager.saveResult(timeInSeconds: secondsInGame, level: level)
         } else {
-            fartSoundEffect?.play()
             navigationItem.title = Emoji.dizzy.rawValue
             view.setGradient(with: .bgRedColor, type: .axial)
         }

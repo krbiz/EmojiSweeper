@@ -9,13 +9,10 @@
 import Foundation
 
 extension String {
-    init?(stopWatchFormat timeInterval: TimeInterval) {
+    init(stopWatchFormat timeInterval: TimeInterval) {
         self.init()
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = .pad
-        guard let string = formatter.string(from: TimeInterval(timeInterval)) else { return }
-        self = string
+        let formatter = DateFormatter()
+        formatter.dateFormat = timeInterval >= 3600 ? "H:mm:ss" : "m:ss"
+        self = formatter.string(from: Date(timeIntervalSinceReferenceDate: timeInterval))
     }
 }

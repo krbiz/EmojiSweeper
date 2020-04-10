@@ -30,7 +30,6 @@
 		5C7A731D243BB167008579BF /* GameFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A731C243BB167008579BF /* GameFieldProtocol.swift */; };
 		5C7A7324243BCCDC008579BF /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7323243BCCDC008579BF /* Emoji.swift */; };
 		5C7A7326243D1C96008579BF /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A7325243D1C96008579BF /* Levels.swift */; };
-		5C7A7329243D24B8008579BF /* Fart.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A7328243D24B8008579BF /* Fart.m4a */; };
 		5C7A732F243D55E4008579BF /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A732E243D55E4008579BF /* ResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +59,6 @@
 		5C7A731C243BB167008579BF /* GameFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldProtocol.swift; sourceTree = "<group>"; };
 		5C7A7323243BCCDC008579BF /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		5C7A7325243D1C96008579BF /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
-		5C7A7328243D24B8008579BF /* Fart.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fart.m4a; sourceTree = "<group>"; };
 		5C7A732E243D55E4008579BF /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,7 +144,6 @@
 		5C7A7320243BB350008579BF /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				5C7A7327243D2499008579BF /* Sound */,
 				5C7A72F4243A2B24008579BF /* AppDelegate.swift */,
 				5C7A72F6243A2B24008579BF /* SceneDelegate.swift */,
 				5C7A7300243A2B29008579BF /* Assets.xcassets */,
@@ -173,14 +170,6 @@
 				5C7A72FD243A2B24008579BF /* EmojiSweeper.xcdatamodeld */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		5C7A7327243D2499008579BF /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				5C7A7328243D24B8008579BF /* Fart.m4a */,
-			);
-			path = Sound;
 			sourceTree = "<group>";
 		};
 		5C7A732A243D4208008579BF /* Extensions */ = {
@@ -263,7 +252,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7A7304243A2B29008579BF /* LaunchScreen.storyboard in Resources */,
-				5C7A7329243D24B8008579BF /* Fart.m4a in Resources */,
 				5C7A7301243A2B29008579BF /* Assets.xcassets in Resources */,
 				5C7A72FC243A2B24008579BF /* Main.storyboard in Resources */,
 				5C537CFA243E0A7100C4DC0A /* ResultCell.xib in Resources */,
