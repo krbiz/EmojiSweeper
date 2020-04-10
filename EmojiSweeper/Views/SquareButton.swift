@@ -36,7 +36,10 @@ class SquareButton: UIButton {
     private func setup() {
         self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = 1
-        self.setGradient(with: .baseColor, type: .conic)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         self.titleLabel?.font = UIFont.systemFont(ofSize: bounds.size.width / 1.5)
     }
 

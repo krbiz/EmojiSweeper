@@ -35,21 +35,6 @@ extension ResultsViewController {
         return resultsForLevel[indexPath.row]
     }
     
-    func setupInputData() {
-        CoreDataManager.saveResult(timeInSeconds: 98, level: .beginner)
-        CoreDataManager.saveResult(timeInSeconds: 105, level: .beginner)
-        CoreDataManager.saveResult(timeInSeconds: 73, level: .beginner)
-        CoreDataManager.saveResult(timeInSeconds: 98, level: .beginner)
-        CoreDataManager.saveResult(timeInSeconds: 105, level: .beginner)
-        CoreDataManager.saveResult(timeInSeconds: 73, level: .beginner)
-        CoreDataManager.saveResult(timeInSeconds: 308, level: .intermediate)
-        CoreDataManager.saveResult(timeInSeconds: 376, level: .intermediate)
-        CoreDataManager.saveResult(timeInSeconds: 450, level: .intermediate)
-        CoreDataManager.saveResult(timeInSeconds: 4008, level: .expert)
-        CoreDataManager.saveResult(timeInSeconds: 5076, level: .expert)
-        CoreDataManager.saveResult(timeInSeconds: 6050, level: .expert)
-    }
-    
     func removeAllData() {
         results = []
         levels = []

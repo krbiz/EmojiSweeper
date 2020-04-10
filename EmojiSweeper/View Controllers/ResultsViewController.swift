@@ -35,7 +35,6 @@ class ResultsViewController: UITableViewController {
             UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
         setupDataSource()
-        //setupInputData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -103,7 +102,6 @@ extension ResultsViewController {
         return description
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: resultsViewCellIdentifier,
                                                  for: indexPath) as! ResultCell

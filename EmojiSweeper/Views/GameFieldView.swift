@@ -26,41 +26,32 @@ class GameFieldView: UIView {
         super.init(frame: frame)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        updateFrames()
+    }
+    
     // MARK: - Setup methods
     
     func setupView(with rows: Int, columns: Int, mineCount: Int) {
         
         gameField = GameField(rows: rows, columns: columns, mineCount: mineCount)
         
-        let width = self.bounds.width
-        let height = self.bounds.height
-
-        let squareWidth = min(width / CGFloat(columns), height / CGFloat(rows))
-        
-        let leftInset = (width - squareWidth * CGFloat(columns)) / 2
-        let topInset = (height - squareWidth * CGFloat(rows)) / 2
-        
         // Add square buttons to the view
-        for i in 0..<rows {
-            for j in 0..<columns {
-                let x = squareWidth * CGFloat(j) + leftInset
-                let y = squareWidth * CGFloat(i) + topInset
-                let frame = CGRect(x: x, y: y, width: squareWidth, height: squareWidth)
-                
-                let squareButton = SquareButton(frame: frame)
-                squareButton.tag = i * columns + j
-                
-                squareButton.addTarget(self, action: #selector(tapButton(_:)), for: .touchUpInside)
-                let longPressGesture =
-                    UILongPressGestureRecognizer(target: self, action: #selector(longPressButton(_:)))
-                longPressGesture.minimumPressDuration = 0.2
-                squareButton.addGestureRecognizer(longPressGesture)
-                
-                self.squareButtons.append(squareButton)
-                self.addSubview(squareButton)
-            }
+        for index in 0..<(rows * columns) {
+            let squareButton = SquareButton()
+            squareButton.tag = index
+            
+            squareButton.addTarget(self, action: #selector(tapButton(_:)), for: .touchUpInside)
+            let longPressGesture =
+                UILongPressGestureRecognizer(target: self, action: #selector(longPressButton(_:)))
+            longPressGesture.minimumPressDuration = 0.2
+            squareButton.addGestureRecognizer(longPressGesture)
+            
+            self.squareButtons.append(squareButton)
+            self.addSubview(squareButton)
         }
-        
     }
     
     func reloadView(with rows: Int, columns: Int, mineCount: Int) {
@@ -71,6 +62,32 @@ class GameFieldView: UIView {
         isUserInteractionEnabled = true
         isGameStarted = false
         setupView(with: rows, columns: columns, mineCount: mineCount)
+    }
+    
+    func updateFrames() {
+        let columns = gameField.columns
+        let rows = gameField.rows
+        
+        let width = self.bounds.width
+        let height = self.bounds.height
+        
+        let squareWidth = min(width / CGFloat(columns), height / CGFloat(rows))
+        
+        let leftInset = (width - squareWidth * CGFloat(columns)) / 2
+        let topInset = (height - squareWidth * CGFloat(rows)) / 2
+        
+        // Change frames of buttons
+        for i in 0..<rows {
+            for j in 0..<columns {
+                let index = i * columns + j
+                let x = squareWidth * CGFloat(j) + leftInset
+                let y = squareWidth * CGFloat(i) + topInset
+                let frame = CGRect(x: x, y: y, width: squareWidth, height: squareWidth)
+                
+                squareButtons[index].frame = frame
+                squareButtons[index].setGradient(with: .baseColor, type: .conic)
+            }
+        }
     }
     
     // MARK: - Private methods

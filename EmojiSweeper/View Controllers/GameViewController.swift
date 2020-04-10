@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class GameViewController: UIViewController {
     
@@ -64,7 +63,7 @@ class GameViewController: UIViewController {
         for level in Level.allCases.reversed() {
             segmentedControl.insertSegment(withTitle: level.description, at: 0, animated: false)
         }
-        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = level.rawValue
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         

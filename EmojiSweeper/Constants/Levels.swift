@@ -38,9 +38,9 @@ struct GameSettings {
         case .beginner:
             return GameSettings(rows: 9, colums: 9, mineCount: 10)
         case .intermediate:
-            return GameSettings(rows: 13, colums: 12, mineCount: 20)
+            return GameSettings(rows: 12, colums: 12, mineCount: 20)
         case .expert:
-            return GameSettings(rows: 19, colums: 14, mineCount: 50)
+            return GameSettings(rows: 15, colums: 14, mineCount: 40)
         }
     }
     

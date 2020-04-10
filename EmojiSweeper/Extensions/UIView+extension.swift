@@ -11,6 +11,8 @@ import UIKit
 extension UIView {
     
     func setGradient(with color: UIColor, type: CAGradientLayerType, isSymmetricalEdges: Bool = true) {
+        
+        // Disable change color animations
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
