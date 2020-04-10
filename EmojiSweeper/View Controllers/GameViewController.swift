@@ -13,8 +13,8 @@ class GameViewController: UIViewController {
     
     var level = Level.beginner
     
-    var levelSettings: LevelSettings {
-        return LevelSettings.settings(level)
+    var levelSettings: GameSettings {
+        return GameSettings.settings(level)
     }
     
     var mineCountLeft = 0 {
@@ -26,14 +26,13 @@ class GameViewController: UIViewController {
     
     var secondsInGame = 0 {
         didSet {
-            let minutes = secondsInGame / 60
-            let seconds = secondsInGame % 60
-            timerLabel.text = String(format: "%01i:%02i", minutes, seconds)
+            timerLabel.text = String(stopWatchFormat: TimeInterval(secondsInGame))
         }
     }
     
     var timer: Timer?
     var fartSoundEffect: AVAudioPlayer?
+    var isGameFinished = false
     
     @IBOutlet weak var fieldView: GameFieldView!
     @IBOutlet weak var minesLeftInfoLabel: UILabel!
@@ -41,7 +40,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var timerInfoLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +69,11 @@ class GameViewController: UIViewController {
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
         segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         
+        // Add TapGestureRecognizer to restart game by tap when game is finished
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(tapViewGestureRecognizer(_:)))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+        
         // Setup fart sound effect
         if let bundle = Bundle.main.path(forResource: "Fart", ofType: "m4a") {
             let url = URL(fileURLWithPath: bundle)
@@ -89,7 +92,14 @@ class GameViewController: UIViewController {
                              mineCount: levelSettings.mineCount)
     }
     
-    // MARK: - IB Actions
+    
+    // MARK: - Actions
+    
+    @objc func tapViewGestureRecognizer(_ sender: UITapGestureRecognizer) {
+        if isGameFinished {
+            restartGame()
+        }
+    }
     
     @IBAction func actionRestartGame(_ sender: UIBarButtonItem) {
         restartGame()
@@ -103,7 +113,7 @@ class GameViewController: UIViewController {
     
 }
 
-// MARK: - GameField Delegate
+// MARK: - GameFieldDelegate
 
 extension GameViewController: GameFieldDelegate {
     
@@ -114,7 +124,10 @@ extension GameViewController: GameFieldDelegate {
     }
     
     func finishGame(_ fieldView: GameFieldView, isWinner: Bool) {
+        
         timer?.invalidate()
+        isGameFinished = true
+        
         if isWinner {
             navigationItem.title = Emoji.party.rawValue
             view.setGradient(with: .bgGreenColor, type: .axial)

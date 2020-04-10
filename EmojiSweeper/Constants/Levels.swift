@@ -27,20 +27,20 @@ enum Level: Int, CaseIterable {
     
 }
 
-struct LevelSettings {
+struct GameSettings {
     
     let rows: Int
     let colums: Int
     let mineCount: Int
     
-    static func settings(_ level: Level) -> LevelSettings {
+    static func settings(_ level: Level) -> GameSettings {
         switch level {
         case .beginner:
-            return LevelSettings(rows: 9, colums: 9, mineCount: 10)
+            return GameSettings(rows: 9, colums: 9, mineCount: 10)
         case .intermediate:
-            return LevelSettings(rows: 13, colums: 12, mineCount: 20)
+            return GameSettings(rows: 13, colums: 12, mineCount: 20)
         case .expert:
-            return LevelSettings(rows: 19, colums: 14, mineCount: 50)
+            return GameSettings(rows: 19, colums: 14, mineCount: 50)
         }
     }
     

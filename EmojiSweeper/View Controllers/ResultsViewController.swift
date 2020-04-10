@@ -24,6 +24,7 @@ class ResultsViewController: UITableViewController {
 
     @IBOutlet weak var totalWinsLabel: UILabel!
     
+    // MARK: - Setup methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,10 @@ class ResultsViewController: UITableViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         totalWinsLabel.text = "Total wins: \(results.count)"
+        navigationItem.rightBarButtonItem?.isEnabled = results.count == 0 ? false : true
     }
+    
+    // MARK: - IBActions
     
     @IBAction func actionBackButton(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
@@ -56,7 +60,7 @@ class ResultsViewController: UITableViewController {
     
     @IBAction func actionClearResult(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil,
-                                      message: "Are you sure you want to delete history?",
+                                      message: "Are you sure you want to delete the history?",
                                       preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             self.removeAllData()
@@ -68,6 +72,12 @@ class ResultsViewController: UITableViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
+    }
+    
+    // MARK: -
+    
+    deinit {
+        print("deinit: \(type(of: self))")
     }
     
 }
@@ -100,8 +110,8 @@ extension ResultsViewController {
 
         let cellResult = result(forIndexPath: indexPath)
         
-        cell.timeLabel.text = cellResult.timeFormat()
-        cell.dateLabel.text = cellResult.dateFormat()
+        cell.timeLabel.text = cellResult.timeString
+        cell.dateLabel.text = cellResult.dateString
         cell.bestTimeLabel.isHidden = indexPath.row == 0 ? false : true
         
         return cell

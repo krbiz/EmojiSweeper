@@ -21,14 +21,11 @@ extension UserResult {
     @NSManaged public var level: Int16
     @NSManaged public var timeInSeconds: Int16
     
-    
-    func timeFormat() -> String {
-        let minutes = timeInSeconds / 60
-        let seconds = timeInSeconds % 60
-        return String(format: "%01i:%02i", minutes, seconds)
+    var timeString: String? {
+        return String(stopWatchFormat: TimeInterval(timeInSeconds))
     }
     
-    func dateFormat() -> String? {
+    var dateString: String? {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none
         dateFormatter.dateStyle = .medium

@@ -12,7 +12,7 @@ class GameFieldView: UIView {
     
     private var gameField: GameField!
     private var squareButtons = [SquareButton]()
-    private var gameIsStarted = false
+    private var isGameStarted = false
     
     weak var delegate: GameFieldDelegate?
     
@@ -69,13 +69,13 @@ class GameFieldView: UIView {
         }
         squareButtons.removeAll()
         isUserInteractionEnabled = true
-        gameIsStarted = false
+        isGameStarted = false
         setupView(with: rows, columns: columns, mineCount: mineCount)
     }
     
     // MARK: - Private methods
     
-    private func checkVictory() -> Bool {
+    private func isVictory() -> Bool {
         var openButtonsCount = 0
         squareButtons.forEach { button in
             if button.condition == .open {
@@ -184,19 +184,19 @@ class GameFieldView: UIView {
         }
         
         // Start Game Delegate method is calling
-        if !gameIsStarted {
-            gameIsStarted = true
+        if !isGameStarted {
+            isGameStarted = true
             delegate?.startGame(self)
         }
         
         // Finish Game Delegate method is calling
-        if checkVictory() {
+        if isVictory() {
             delegate?.finishGame(self, isWinner: true)
         }
     }
     
     @objc private func longPressButton(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began && gameIsStarted {
+        if sender.state == .began && isGameStarted {
             
             // Taptic vibration feedback
             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
@@ -212,10 +212,6 @@ class GameFieldView: UIView {
                 delegate?.addFlag?(self)
             }
         }
-    }
-    
-    deinit {
-        print("deinit: \(type(of: self))")
     }
     
 }
